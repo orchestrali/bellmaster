@@ -64,6 +64,9 @@ for (let i = 0; i < bells.length; i++) {
 
 $(function() {
   console.log("hello world :o");
+  $("body").svg({onLoad: (o) => {
+    svg = o;
+  }});
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   gainNode = audioCtx.createGain();
   gainNode.gain.value = 0.75;
