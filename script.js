@@ -1,5 +1,5 @@
 var numbells = 6;
-var soundurl = ""; //need to get this
+var soundurl = "/sounds/"; //need to get this
 //objects with bell sound info (eventually)
 var bells = [{bell: "F4"},{bell: "G4"},{bell: "A4"},{bell: "Bf4"},{bell: "C5"},{bell: "D5"},{bell: "E5"},{bell: "F5"},{bell: "G5"},{bell: "A5"},{bell: "Bf5"},{bell: "C6"}];
 //length of bell rope animation
