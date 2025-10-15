@@ -819,8 +819,8 @@ function addrope(bell) {
       let j = s === "hand" ? i+1 : i;
       let y = s === "hand" ? yy[j] : yy[yy.length-i-2] ;
       let dur = setdur(s,i);
-      let begin = i === 0 ? "indefinite" : s + (j-1) +"b"+num + ".endEvent";
-      svg.other(rope, "animate", {id: s+j+"b"+num, attributename: "viewBox", to: "0 "+y+" 60 500", dur: dur, begin: begin, fill: "freeze"});
+      let begin = i === 0 ? "indefinite" : s + (j-1) +"b"+bell.num + ".endEvent";
+      svg.other(rope, "animate", {id: s+j+"b"+bell.num, attributename: "viewBox", to: "0 "+y+" 60 500", dur: dur, begin: begin, fill: "freeze"});
     }
   });
 }
