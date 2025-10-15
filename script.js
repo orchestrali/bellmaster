@@ -1,5 +1,5 @@
 var numbells = 6;
-var soundurl = "/sounds/"; //need to get this
+var soundurl = "sounds/"; //need to get this
 //objects with bell sound info (eventually)
 var bells = [{bell: "F4"},{bell: "G4"},{bell: "A4"},{bell: "Bf4"},{bell: "C5"},{bell: "D5"},{bell: "E5"},{bell: "F5"},{bell: "G5"},{bell: "A5"},{bell: "Bf5"},{bell: "C6"}];
 //length of bell rope animation
@@ -104,23 +104,31 @@ $(function() {
 
 
 async function getFile(audioContext, filepath) {
-  const response = await fetch(filepath);
-  const arrayBuffer = await response.arrayBuffer();
-  return arrayBuffer;
+  try {
+    const response = await fetch(filepath);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const arrayBuffer = await response.arrayBuffer();
+    return arrayBuffer;
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 async function setupSample(i) {
   let arrayBuffer = await getFile(audioCtx, bells[i].url);
-  audioCtx.decodeAudioData(arrayBuffer, (buffer) => {
-    bells[i].buffer = buffer;
-    if (i < bells.length-1) {
-      i++;
-      setupSample(i);
-    } else {
-      console.log("finished setting up");
-
-    }
-  }, (e) => { console.log(e) });
+  if (arrayBuffer) {
+    audioCtx.decodeAudioData(arrayBuffer, (buffer) => {
+      bells[i].buffer = buffer;
+      if (i < bells.length-1) {
+        i++;
+        setupSample(i);
+      } else {
+        console.log("finished setting up");
+      }
+    }, (e) => { console.log(e) });
+  }
 }
 
 var listeners = [
@@ -788,15 +796,15 @@ function addrope(bell) {
   svg.rect(rope, 30, -90, 3, 260, {fill: "#dddddd", "stroke-width": 1, stroke: "#aaaaaa"});
   svg.rect(rope, 30, 255, 3, 60, {fill: "#dddddd", "stroke-width": 1, stroke: "#aaaaaa"});
 
-  let hand = svg.svg(rope, {class: "hand", id: "hand"+bell.num});
+  let hand = svg.svg(rope, null, null, {class: "hand", id: "hand"+bell.num});
   svg.rect(hand, 0, 170, 29, 90, {fill: "transparent"});
   svg.rect(hand, 35, 170, 29, 90, {fill: "transparent"});
-  svg.rect(hand, 27, 170, 9, 90, 7, {fill: "url(#sallypattern)", class: "sally", id: "sally"+bell.num});
+  svg.rect(hand, 27, 170, 9, 90, 7, null, {fill: "url(#sallypattern)", class: "sally", id: "sally"+bell.num});
 
-  let back = svg.svg(rope, {class: "back", id: "back"+bell.num});
+  let back = svg.svg(rope, null, null, {class: "back", id: "back"+bell.num});
   svg.rect(back, 0, 315, 29, 61, {fill: "transparent"});
   svg.rect(back, 33, 315, 29, 61, {fill: "transparent"});
-  let tail = svg.svg(back, {class: "tail", id: "tail"+bell.num});
+  let tail = svg.svg(back, null, null, {class: "tail", id: "tail"+bell.num});
   svg.rect(tail, 30, 315, 5, 61, {fill: "white"});
   svg.path(tail, "M31.5,310 v30 l2,2 v30 l-1,2 h-2 l-1,-2 v-28 l4,-5 v-20 l-6,-3", {"stroke-width": 3, stroke: "#dddddd", fill: "none"});
   svg.path(tail, "M30,290 v50 l2,2 v30 l-1,2 l-1,-2 v-28 l5,-5 v-20 l-6,-3", {stroke: "#aaaaaa", "stroke-width": 1, fill: "none"});
