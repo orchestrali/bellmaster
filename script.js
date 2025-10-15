@@ -782,7 +782,6 @@ var width = 60;
 function addrope(bell) {
   let div = `<div class="chute" id="chute${bell.num}">
     <span class="bellnum">${bell.num}</span>
-    <span class="placebell"></span>
   </div>`;
   //then append the div
   $("#bells").append(div);
@@ -820,7 +819,7 @@ function addrope(bell) {
       let y = s === "hand" ? yy[j] : yy[yy.length-i-2] ;
       let dur = setdur(s,i);
       let begin = i === 0 ? "indefinite" : s + (j-1) +"b"+bell.num + ".endEvent";
-      svg.other(rope, "animate", {id: s+j+"b"+bell.num, attributename: "viewBox", to: "0 "+y+" 60 500", dur: dur, begin: begin, fill: "freeze"});
+      svg.other(rope, "animate", {id: s+j+"b"+bell.num, attributeName: "viewBox", to: "0 "+y+" 60 500", dur: dur, begin: begin, fill: "freeze"});
     }
   });
 }
