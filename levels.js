@@ -37,28 +37,7 @@
     "rowzero": [[1],[2],[3],[4],[5],[6]],
     "placenotation": [[5,6],[1,4,5,6],[5,6],[1,4,5,6],[5,6],[1,4,5,6],[5,6],[1,2,5,6]]
   },
-  /*
-  {
-    "mybell": 5,
-    "instructions": "Now for some call changes! Sometimes during a handstroke (when the sally click is about to happen) you'll see a 'call' telling two bells to trade places. The call will take effect on the next handstroke, so you have a backstroke to think about what the call means. If it's '5 to X', you'll move one place earlier to follow bell X. If the call is 'Y to X', where X is the bell you've *been* following, you'll move one place later to follow bell Y. If  the call is 'Y to X' where *Y* is the bell you've been following, you'll stay in the same place but the two bells in front of you will trade places. There are different ways to do call changes—this is 'calling down'.",
-    "rowArr": [{"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[4],[5],[6]], "call": "5 to 3"},{"row":[[1],[2],[3],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[5],[4],[6]]},{"row":[[1],[2],[3],[5],[4],[6]]},
-            {"row":[[1],[2],[3],[5],[4],[6]], "call": "3 to 1"},{"row":[[1],[2],[3],[5],[4],[6]]},
-            {"row":[[1],[3],[2],[5],[4],[6]]},{"row":[[1],[3],[2],[5],[4],[6]]},
-            {"row":[[1],[3],[2],[5],[4],[6]], "call": "5 to 3"},{"row":[[1],[3],[2],[5],[4],[6]]},
-            {"row":[[1],[3],[5],[2],[4],[6]], "call": "This row, 135246, is called Queens"},{"row":[[1],[3],[5],[2],[4],[6]]},
-            {"row":[[1],[3],[5],[2],[4],[6]]},{"row":[[1],[3],[5],[2],[4],[6]]},
-            {"row":[[1],[3],[5],[2],[4],[6]]},{"row":[[1],[3],[5],[2],[4],[6]]},
-            {"row":[[1],[3],[5],[2],[4],[6]], "call": "2 to 3"},{"row":[[1],[3],[5],[2],[4],[6]]},
-            {"row":[[1],[3],[2],[5],[4],[6]]},{"row":[[1],[3],[2],[5],[4],[6]]},
-            {"row":[[1],[3],[2],[5],[4],[6]], "call": "4 to 2"},{"row":[[1],[3],[2],[5],[4],[6]]},
-            {"row":[[1],[3],[2],[4],[5],[6]]},{"row":[[1],[3],[2],[4],[5],[6]]},
-            {"row":[[1],[3],[2],[4],[5],[6]], "call": "2 to 1"},{"row":[[1],[3],[2],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]}]
-  },
-  */
+  
   {
     "instructions": "Now you'll practice leading, ringing in first place. You'll ring 'after' the tenor, the 6, but on the opposite stroke. Your backstrokes should follow the tenor's handstrokes with the same steady rhythm as in previous levels, but between the tenor's backstrokes and your handstrokes there should be about enough time to fit an extra silent bell in (this is the handstroke gap). To start, click 'OK' then ring whenever you're ready!",
     "mybell": 1,
@@ -77,46 +56,7 @@
           {"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]},
             {"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]}]
   },
-  /*
-  {
-    "instructions": "Back to bell 5 for some more call changes! These will start out the same but then involve you leading for a few rows.",
-    "mybell": 5,
-    "rowArr": [{"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[4],[5],[6]], "call": "5 to 3"},{"row":[[1],[2],[3],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[5],[4],[6]]},{"row":[[1],[2],[3],[5],[4],[6]]},
-            {"row":[[1],[2],[3],[5],[4],[6]], "call": "3 to 1"},{"row":[[1],[2],[3],[5],[4],[6]]},
-            {"row":[[1],[3],[2],[5],[4],[6]]},{"row":[[1],[3],[2],[5],[4],[6]]},
-            {"row":[[1],[3],[2],[5],[4],[6]], "call": "5 to 3"},{"row":[[1],[3],[2],[5],[4],[6]]},
-            {"row":[[1],[3],[5],[2],[4],[6]]},{"row":[[1],[3],[5],[2],[4],[6]]},
-            {"row":[[1],[3],[5],[2],[4],[6]]},{"row":[[1],[3],[5],[2],[4],[6]]},
-            {"row":[[1],[3],[5],[2],[4],[6]]},{"row":[[1],[3],[5],[2],[4],[6]]},
-             {"row":[[1],[3],[5],[2],[4],[6]], "call": "5 to 1"},{"row":[[1],[3],[5],[2],[4],[6]]},
-             {"row":[[1],[5],[3],[2],[4],[6]]},{"row":[[1],[5],[3],[2],[4],[6]]},
-             {"row":[[1],[5],[3],[2],[4],[6]], "call": "5 to lead"},{"row":[[1],[5],[3],[2],[4],[6]]},
-             {"row":[[5],[1],[3],[2],[4],[6]]},{"row":[[5],[1],[3],[2],[4],[6]]},
-             {"row":[[5],[1],[3],[2],[4],[6]], "call": "3 to 5"},{"row":[[5],[1],[3],[2],[4],[6]]},
-             {"row":[[5],[3],[1],[2],[4],[6]]},{"row":[[5],[3],[1],[2],[4],[6]]},
-             {"row":[[5],[3],[1],[2],[4],[6]]},{"row":[[5],[3],[1],[2],[4],[6]]},
-             {"row":[[5],[3],[1],[2],[4],[6]]},{"row":[[5],[3],[1],[2],[4],[6]]},
-             {"row":[[5],[3],[1],[2],[4],[6]], "call": "3 to lead"},{"row":[[5],[3],[1],[2],[4],[6]]},
-             {"row":[[3],[5],[1],[2],[4],[6]]},{"row":[[3],[5],[1],[2],[4],[6]]},
-             {"row":[[3],[5],[1],[2],[4],[6]], "call": "2 to 5"},{"row":[[3],[5],[1],[2],[4],[6]]},
-             {"row":[[3],[5],[2],[1],[4],[6]]},{"row":[[3],[5],[2],[1],[4],[6]]},
-             {"row":[[3],[5],[2],[1],[4],[6]], "call": "2 to 3"},{"row":[[3],[5],[2],[1],[4],[6]]},
-             {"row":[[3],[2],[5],[1],[4],[6]]},{"row":[[3],[2],[5],[1],[4],[6]]},
-             {"row":[[3],[2],[5],[1],[4],[6]], "call": "1 to 2"},{"row":[[3],[2],[5],[1],[4],[6]]},
-             {"row":[[3],[2],[1],[5],[4],[6]]},{"row":[[3],[2],[1],[5],[4],[6]]},
-             {"row":[[3],[2],[1],[5],[4],[6]], "call": "4 to 1"},{"row":[[3],[2],[1],[5],[4],[6]]},
-             {"row":[[3],[2],[1],[4],[5],[6]]},{"row":[[3],[2],[1],[4],[5],[6]]},
-             {"row":[[3],[2],[1],[4],[5],[6]], "call": "1 to 3"},{"row":[[3],[2],[1],[4],[5],[6]]},
-             {"row":[[3],[1],[2],[4],[5],[6]]},{"row":[[3],[1],[2],[4],[5],[6]]},
-             {"row":[[3],[1],[2],[4],[5],[6]], "call": "1 to lead"},{"row":[[3],[1],[2],[4],[5],[6]]},
-            {"row":[[1],[3],[2],[4],[5],[6]]},{"row":[[1],[3],[2],[4],[5],[6]]},
-            {"row":[[1],[3],[2],[4],[5],[6]], "call": "2 to 1"},{"row":[[1],[3],[2],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]},
-            {"row":[[1],[2],[3],[4],[5],[6]]},{"row":[[1],[2],[3],[4],[5],[6]]}]
-  },
-  */
+  
   {
     "mybell": 1,
     "instructions": "It's time to try changing place during the ringing! You'll begin by leading in rounds just like the previous level. Then during a handstroke, '1 and 2 go places' will appear on the screen. The next handstroke and backstroke, ring in second place after the 2, then lead again for a handstroke and backstroke. Repeat those four blows—hand and back in second place, hand and back in first place—until told to stand.",
