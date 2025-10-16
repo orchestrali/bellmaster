@@ -61,7 +61,7 @@ for (let i = 0; i < bells.length; i++) {
   bells[i].url = soundurl + bells[i].bell + ".wav";
 }
 
-
+$("#startbutton").hide();
 
 $(function() {
   console.log("hello world :o");
@@ -126,6 +126,7 @@ async function setupSample(i) {
         i++;
         setupSample(i);
       } else {
+        $("#startbutton").show();
         console.log("finished setting up");
       }
     }, (e) => { console.log(e) });
