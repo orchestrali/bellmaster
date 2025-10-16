@@ -274,7 +274,7 @@ function buildrows(o) {
   rowArr = arr;
 }
 
-
+//really for changing level in any direction
 function levelup() {
   $("h3").text("Level "+level);
   if (!instructions[level+1]) {
@@ -425,9 +425,9 @@ function nextPlace() {
     rownum++;
     let call = rownum < rowArr.length && rowArr[rownum].call ? rowArr[rownum].call : " ";
     
-    if (rowArr[rownum+1] || [1,2].includes(level) || roundscount < stoprounds) {
-      let p1 = [1,2].includes(level) ? mybell-1 : rowArr[rownum] ? findplace(rownum) : findplace(numrounds);
-      let p2 = [1,2].includes(level) ? mybell-1 : rowArr[rownum+1] ? findplace(rownum+1) : rowArr[rownum] ? findplace(numrounds) : findplace(numrounds+1);
+    if (rowArr[rownum+1] || [1,2,3].includes(level) || roundscount < stoprounds) {
+      let p1 = [1,2,3].includes(level) ? mybell-1 : rowArr[rownum] ? findplace(rownum) : findplace(numrounds);
+      let p2 = [1,2,3].includes(level) ? mybell-1 : rowArr[rownum+1] ? findplace(rownum+1) : rowArr[rownum] ? findplace(numrounds) : findplace(numrounds+1);
       let diff = p2 - p1;
       let time = myqueue[myqueue.length-1].time + speed + diff*delay - stroke*.23*duration;
       if (stroke === -1) time += delay;
@@ -450,7 +450,7 @@ function nextPlace() {
     if (rownum === rowArr.length) {
       
       if (!thatsall) {
-        if ([1,2].includes(level) && !keepgoing) {
+        if ([1,2,3].includes(level) && !keepgoing) {
           roundscount++;
           if (roundscount === 3) {
             thatsall = true;
