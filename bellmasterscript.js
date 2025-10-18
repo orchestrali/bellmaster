@@ -126,10 +126,14 @@ async function setupSample(i) {
         i++;
         setupSample(i);
       } else {
+        $("#loading").hide();
         $("#startbutton").show();
         console.log("finished setting up");
       }
     }, (e) => { console.log(e) });
+  } else {
+    $("#loading").hide();
+    //error
   }
 }
 
