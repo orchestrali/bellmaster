@@ -37,6 +37,7 @@ var nextBellTime = 0.0;
 var mynexttime = 0.0;
 var myqueue = [];
 var timeout;
+var animrequest;
 
 var callqueue = [];
 var placequeue = [];
@@ -405,7 +406,7 @@ function treblesgoing() {
   
   if (rownum === 0 && mybell === 1) {
     waiting = true;
-    requestAnimationFrame(animate);
+    animrequest = requestAnimationFrame(animate);
   } else {
     waiting = false;
     mynexttime = audioCtx.currentTime + (mybell-1)*delay;
@@ -414,7 +415,7 @@ function treblesgoing() {
       myqueue = [{stroke: 1, time: mynexttime, place: mybell-1, rownum: 0},{stroke: -1, time: mynexttime+speed-.23*duration, place: mybell-1, rownum: 1}];
     }
     scheduler();
-    requestAnimationFrame(animate);
+    animrequest = requestAnimationFrame(animate);
   }
 }
 
@@ -569,7 +570,7 @@ function animate() {
     $("#sound-line").css("width", "660px");
   }
   
-  requestAnimationFrame(animate);
+  animrequest = requestAnimationFrame(animate);
   
 }
 
@@ -712,6 +713,7 @@ function thatisall() {
   playing = false;
   waiting = false;
   clearTimeout(timeout);
+  cancelAnimationFrame(animrequest);
   setTimeout(function() {
     standbells(1);
   }, 500);
