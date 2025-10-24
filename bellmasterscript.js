@@ -105,7 +105,7 @@ $(function() {
 
 
 
-
+//get a file
 async function getFile(audioContext, filepath) {
   try {
     const response = await fetch(filepath);
@@ -119,6 +119,7 @@ async function getFile(audioContext, filepath) {
   }
 }
 
+//set up bell sound
 async function setupSample(i) {
   let arrayBuffer = await getFile(audioCtx, bells[i].url);
   if (arrayBuffer) {
@@ -139,6 +140,7 @@ async function setupSample(i) {
   }
 }
 
+//actions for triggering ringing events
 var listeners = [
   //{id: "hand15b", event: "endEvent", f: endpull},
   //{id: "back14b", event: "endEvent", f: endpull},
@@ -502,7 +504,7 @@ function scheduleRing(p, t) {
     }
     
     
-    if (!bell && waitgaps && (!num || !num[1])) {
+    if (mine && waitgaps && (!num || !num[1])) {
       waiting = t;
     } else {
       nextPlace();
@@ -519,7 +521,7 @@ function scheduler() {
   while (nextBellTime < audioCtx.currentTime + schedule && rowArr[rownum] && !waiting) {
     scheduleRing(place, nextBellTime);
   }
-  !waiting && rowArr[rownum] ? timeout = setTimeout(scheduler, lookahead): clearTimeout(timeout);
+  !waiting && rowArr[rownum] ? timeout = setTimeout(scheduler, lookahead) : clearTimeout(timeout);
 }
 
 function animate() {
