@@ -497,7 +497,8 @@ function scheduleRing(p, t) {
       pull(num[0],t);
     }
     if (bell || (p === 0 && rownum%2 === 0)) {
-      soundqueue.push({place: p, rownum: rownum, time: t+(stroke === 1 ? 8 : 13)*duration/21});
+      let x = stroke === 1 ? 8 : 13;
+      soundqueue.push({place: p, rownum: rownum, time: t+x*duration/21});
     }
     if (rownum === 0 && p === 0 && roundscount === 0) {
       callqueue.push({call: "", time: t, rownum: rownum});
