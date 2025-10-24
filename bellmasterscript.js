@@ -55,6 +55,7 @@ var feedback = true;
 var displayplace = false;
 var diffs = [];
 var keepgoing = false;
+var demomode = true;
 
 for (let i = 0; i < bells.length; i++) {
   bells[i].type = "tower";
@@ -483,9 +484,10 @@ function nextPlace() {
 function scheduleRing(p, t) {
   if (p > -1) {
     let num = rowArr[rownum].row[p];
-    let bell = num && num.length && num[0] != mybell;
+    let bell = num && num.length;
+    let mine = num[0] === mybell && !demomode;
     
-    if (bell) {
+    if (bell && !mine) {
       pull(num[0],t);
     }
     if (bell || (p === 0 && rownum%2 === 0)) {
