@@ -55,7 +55,7 @@ var feedback = true;
 var displayplace = false;
 var diffs = [];
 var keepgoing = false;
-var demomode = true;
+var demomode = false;
 
 for (let i = 0; i < bells.length; i++) {
   bells[i].type = "tower";
@@ -179,7 +179,7 @@ function setupRopes(n) {
     document.getElementById(o.id+"3").addEventListener(o.event, o.f);
   });
   $("body").on("keydown", function(e) {
-    if (e.key === "j") {
+    if (e.key === "j" && (!demomode || !playing)) {
       pull(mybell);
     }
   });
@@ -339,7 +339,7 @@ function levelup() {
     
   }
   if (level === 2 && !$("#displayfeedback").length) {
-    $("#instructions p").after('<label for="displayfeedback"><input type="checkbox" id="displayfeedback" name="displayfeedback" checked />show feedback</label>');
+    $("#instructions p").after('<label for="displayfeedback"><input type="checkbox" id="displayfeedback" name="displayfeedback" checked />show feedback</label><label for="demomode"><input type="checkbox" id="demomode" />demo mode (check this to have the computer ring your bell)</label>');
     $("#displayfeedback").on("click", function() {
       feedback = $("#displayfeedback").prop("checked");
       if (!feedback) {
@@ -347,6 +347,9 @@ function levelup() {
       } else {
         $("#visuals").show();
       }
+    });
+    $("#demomode").on("click", function() {
+      demomode = $("#demomode").is(":checked");
     });
   }
   if (level === 12 && !$("#displayplace").length) {
@@ -578,7 +581,9 @@ function triggerpull(e) {
   let n = this.id.startsWith("sally") ? Number(this.id.slice(5)) : Number(this.id.slice(4));
   let bell = bells.find(b => b.num === n);
   if ((bell.stroke === 1 && (this.id.startsWith("sally") || this.id.startsWith("hand"))) || (bell.stroke === -1 && (this.id.startsWith("tail") || this.id.startsWith("back")))) {
-    pull(n);
+    if (!demomode || !playing) {
+      pull(n);
+    }
   }
 }
 
@@ -623,8 +628,10 @@ function pull(n, t) {
           ringtiming = "Late";
           myqueue.shift();
         }
-        $("#feedback").text(ringtiming);
-        $("#feedback").css("opacity", "1");
+        if (!demomode) {
+          $("#feedback").text(ringtiming);
+          $("#feedback").css("opacity", "1");
+        }
         //console.log(ringtiming);
       }
       let i = row.row.findIndex(a => a[0] === n);
