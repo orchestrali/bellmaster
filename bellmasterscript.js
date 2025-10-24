@@ -773,7 +773,7 @@ function ring(e) {
     let x = (Number(bell.left) - 270)/135;
     let z = Number(bell.z)/100;
     pan.push(x, 10, z);
-    
+    $("#testing").text(bellnum.toString());
     let buffer = bell.buffer;
     playSample(audioCtx, buffer, pan);
   }
