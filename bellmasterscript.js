@@ -444,7 +444,7 @@ function nextPlace() {
     nextBellTime += calcnextdelay(stroke);
     //console.log("finished with row "+rownum);
     if (stroke === -1) {
-      soundqueue.push({place: numbells, rownum: rownum, time: nextBellTime + 9*duration/21}); //this is for resetting the visual line, might need time adjusted
+      soundqueue.push({place: numbells, rownum: rownum, time: nextBellTime + 9*duration/21-delay}); //this is for resetting the visual line, might need time adjusted
       //subtract delay
     }
     place = 0;
