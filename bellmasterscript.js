@@ -170,7 +170,7 @@ function setupRopes(n) {
     addrope(bells[j]);
     position(i,num);
     
-    let handstroke = document.getElementById("hand8b"+num);
+    let handstroke = document.getElementById("hand9b"+num);
     handstroke.addEventListener("beginEvent", ring);
     let backstroke = document.getElementById("back11b"+num);
     backstroke.addEventListener("beginEvent", ring);
@@ -210,7 +210,7 @@ function stagechange(n) {
     addrope(bells[j]);
     position(i,num);
     
-    let handstroke = document.getElementById("hand8b"+num);
+    let handstroke = document.getElementById("hand9b"+num);
     handstroke.addEventListener("beginEvent", ring);
     let backstroke = document.getElementById("back11b"+num);
     backstroke.addEventListener("beginEvent", ring);
@@ -414,35 +414,46 @@ function treblesgoing() {
     mynexttime = audioCtx.currentTime + (mybell-1)*delay;
     if (rownum === 0) {
       place = -2, mynexttime += 2*delay;
-      myqueue = [{stroke: 1, time: mynexttime, place: mybell-1, rownum: 0},{stroke: -1, time: mynexttime+speed-.23*duration, place: mybell-1, rownum: 1}];
+      myqueue = [{stroke: 1, time: mynexttime, place: mybell-1, rownum: 0},{stroke: -1, time: mynexttime+speed+calcnextdelay(1), place: mybell-1, rownum: 1}];
     }
     scheduler();
     animrequest = requestAnimationFrame(animate);
   }
 }
 
+function calcnextdelay(stroke) {
+  let currentfraction = stroke === 1 ? 11 : 14;
+  let currentdiff = currentfraction/21 * duration;
+  let nextsound = currentdiff + delay;
+  let nextfraction = stroke === 1 ? 14 : 11;
+  let nextstart = nextsound - nextfraction/21*duration;
+  if (stroke === -1) nextstart += delay; //handstroke gap
+  return nextstart;
+}
+
 function nextPlace() {
-  nextBellTime += delay;
   place++;
   
   if (place === numbells) {
+    nextBellTime += calcnextdelay(stroke);
     //console.log("finished with row "+rownum);
     if (stroke === -1) {
-      soundqueue.push({place: numbells, rownum: rownum, time: nextBellTime + .23*duration + 8*duration/21});
-      nextBellTime += delay + .23*duration; //add handstroke gap
+      soundqueue.push({place: numbells, rownum: rownum, time: nextBellTime + 9*duration/21}); //this is for resetting the visual line, might need time adjusted
+      
     }
-    if (stroke === 1) nextBellTime -= .23*duration;
     place = 0;
     stroke *= -1;
     rownum++;
     let call = rownum < rowArr.length && rowArr[rownum].call ? rowArr[rownum].call : " ";
-    
+
+    //figure out my time for the next row already
     if (rowArr[rownum+1] || [1,2,3].includes(level) || roundscount < stoprounds) {
       let p1 = [1,2,3].includes(level) ? mybell-1 : rowArr[rownum] ? findplace(rownum) : findplace(numrounds);
       let p2 = [1,2,3].includes(level) ? mybell-1 : rowArr[rownum+1] ? findplace(rownum+1) : rowArr[rownum] ? findplace(numrounds) : findplace(numrounds+1);
       let diff = p2 - p1;
-      let time = myqueue[myqueue.length-1].time + speed + diff*delay - stroke*.23*duration;
-      if (stroke === -1) time += delay;
+      let strokedelay = calcnextdelay(stroke);
+      let time = nextBellTime + p1*delay + speed + diff*delay + strokedelay;
+      
       myqueue.push({stroke: stroke*-1, time: time, place: p2, rownum: stroke === 1 ? 1 : 0});
     }
     
@@ -483,6 +494,8 @@ function nextPlace() {
     
     callqueue.push({call: call, time: nextBellTime + delay, rownum: rowArr.length*roundscount + rownum});
     
+  } else {
+    nextBellTime += delay;
   }
 }
 
@@ -497,7 +510,7 @@ function scheduleRing(p, t) {
       pull(num[0],t);
     }
     if (bell || (p === 0 && rownum%2 === 0)) {
-      let x = stroke === 1 ? 8 : 13;
+      let x = stroke === 1 ? 9 : 13;
       soundqueue.push({place: p, rownum: rownum, time: t+x*duration/21});
     }
     if (rownum === 0 && p === 0 && roundscount === 0) {
@@ -610,7 +623,7 @@ function pull(n, t) {
     if (row && mybell === n && playing) {
       
       if (mybell === 1 && waiting && rownum === 0) {
-        myqueue = [{stroke: -1, time: now+speed-.23*duration, place: 0}];
+        myqueue = [{stroke: -1, time: now+speed+calcnextdelay(1), place: 0}];
         //make the sound line start!
       } else if (myqueue.length && feedback) {
         //console.log(myqueue[0]);
@@ -621,7 +634,7 @@ function pull(n, t) {
         } else {
           keepgoing = false;
         }
-        soundqueue.push({time: now+(bell.stroke === -1 ? 8 : 13)*duration/21, place: myqueue[0].place, mybell: true, rownum: myqueue[0].rownum, diff: diff});
+        soundqueue.push({time: now+(bell.stroke === -1 ? 9 : 13)*duration/21, place: myqueue[0].place, mybell: true, rownum: myqueue[0].rownum, diff: diff});
         if (Math.abs(diff) < .1) {
           ringtiming = "Good!";
           myqueue.shift();
