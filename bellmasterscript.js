@@ -58,6 +58,9 @@ var diffs = [];
 var keepgoing = false;
 var demomode = false;
 
+var mytimes1 = [];
+var mytimes2 = [];
+
 for (let i = 0; i < bells.length; i++) {
   bells[i].type = "tower";
   bells[i].url = soundurl + bells[i].bell + ".wav";
@@ -398,6 +401,8 @@ function findplace(rn) {
 
 
 function treblesgoing() {
+  mytimes1 = [];
+  mytimes2 = [];
   //console.log("starting play");
   playing = true;
   nextBellTime = audioCtx.currentTime;
@@ -415,6 +420,7 @@ function treblesgoing() {
     if (rownum === 0) {
       place = -2, mynexttime += 2*delay;
       myqueue = [{stroke: 1, time: mynexttime, place: mybell-1, rownum: 0},{stroke: -1, time: mynexttime+speed-delay+calcnextdelay(1), place: mybell-1, rownum: 1}];
+      myqueue.forEach(o => mytimes1.push(o.time));
     }
     scheduler();
     animrequest = requestAnimationFrame(animate);
@@ -439,7 +445,7 @@ function nextPlace() {
     //console.log("finished with row "+rownum);
     if (stroke === -1) {
       soundqueue.push({place: numbells, rownum: rownum, time: nextBellTime + 9*duration/21}); //this is for resetting the visual line, might need time adjusted
-      
+      //subtract delay
     }
     place = 0;
     stroke *= -1;
@@ -455,6 +461,7 @@ function nextPlace() {
       let time = nextBellTime + speed + (p2-1)*delay + strokedelay;
       
       myqueue.push({stroke: stroke*-1, time: time, place: p2, rownum: stroke === 1 ? 1 : 0});
+      mytimes1.push(time);
     }
     
     if (rownum === rowArr.length-2) {
@@ -505,7 +512,8 @@ function scheduleRing(p, t) {
     let num = rowArr[rownum].row[p];
     let bell = num && num.length;
     let mine = num[0] === mybell && !demomode;
-    
+
+    if (num[0] === mybell) mytimes2.push(t);
     if (bell && !mine) {
       pull(num[0],t);
     }
@@ -624,6 +632,7 @@ function pull(n, t) {
       
       if (mybell === 1 && waiting && rownum === 0) {
         myqueue = [{stroke: -1, time: now+speed-delay+calcnextdelay(1), place: 0}];
+        mytimes1.push(myqueue[0].time);
         //make the sound line start!
       } else if (myqueue.length && feedback) {
         //console.log(myqueue[0]);
@@ -773,6 +782,18 @@ function standbells(n) {
       }
     }
   }
+}
+
+
+function testanalyzetimes() {
+  let l1 = mytimes1.length;
+  let l2 = mytimes2.length;
+  if (l1 != l2) console.log("quantity of times is off");
+  let diffs = [];
+  for (let i = 0; i < Math.min(l1, l2); i++) {
+    diffs.push(mytimes2[i]-mytimes1[i]);
+  }
+  console.log(diffs);
 }
 
 
