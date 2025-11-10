@@ -414,7 +414,7 @@ function treblesgoing() {
     mynexttime = audioCtx.currentTime + (mybell-1)*delay;
     if (rownum === 0) {
       place = -2, mynexttime += 2*delay;
-      myqueue = [{stroke: 1, time: mynexttime, place: mybell-1, rownum: 0},{stroke: -1, time: mynexttime+speed+calcnextdelay(1), place: mybell-1, rownum: 1}];
+      myqueue = [{stroke: 1, time: mynexttime, place: mybell-1, rownum: 0},{stroke: -1, time: mynexttime+speed-delay+calcnextdelay(1), place: mybell-1, rownum: 1}];
     }
     scheduler();
     animrequest = requestAnimationFrame(animate);
@@ -452,7 +452,7 @@ function nextPlace() {
       let p2 = [1,2,3].includes(level) ? mybell-1 : rowArr[rownum+1] ? findplace(rownum+1) : rowArr[rownum] ? findplace(numrounds) : findplace(numrounds+1);
       let diff = p2 - p1;
       let strokedelay = calcnextdelay(stroke);
-      let time = nextBellTime + p1*delay + speed + diff*delay + strokedelay;
+      let time = nextBellTime + speed + (p2-1)*delay + strokedelay;
       
       myqueue.push({stroke: stroke*-1, time: time, place: p2, rownum: stroke === 1 ? 1 : 0});
     }
@@ -623,7 +623,7 @@ function pull(n, t) {
     if (row && mybell === n && playing) {
       
       if (mybell === 1 && waiting && rownum === 0) {
-        myqueue = [{stroke: -1, time: now+speed+calcnextdelay(1), place: 0}];
+        myqueue = [{stroke: -1, time: now+speed-delay+calcnextdelay(1), place: 0}];
         //make the sound line start!
       } else if (myqueue.length && feedback) {
         //console.log(myqueue[0]);
